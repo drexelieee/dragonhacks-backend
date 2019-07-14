@@ -9,8 +9,6 @@ branches:
 before_install:
   - npm i -g npm@6.9.0
   - npm i -g firebase-tools
-script:
-  - npx standard
 deploy:
   - provider: firebase
     token:
@@ -19,6 +17,7 @@ deploy:
     on:
       branch: develop
       repo: drexelieee/dragonhacks-backend
+      node: stable
   - provider: firebase
     token:
       secure: 'jPUXTql/ozug7sjDO3F5nrRC8vWpq9iIl0yvQbnShvytLDPEGuNMf/VV5zCOqrzBy7OquztXx9aFR6TPSGek8DfIp9B0rCV8XrrIzt+sK1GOLoRGQua8NXugcKzmxjYRM5HyvBEUbTBLJOrZlp6YMJ4Dcf1R0qepbP2QeaXwIcm5NwraPr7E90R6FfHk0IEXPRH1Nkj6dS0H8ee5aOF43GMzmfyWIFmQkfyOkBeP/90HD+3+pOgj6UJn1l0OlFAYmbrDHePkRDdK/aWLumCBZV5a52q5pnw8Qo1a2+8acKHZfXdKAsxf8AQPxRsRxTGq9XbG9Y0aSYTdXKRPIJt/+Isfvnb4xHY1wb7vouqCXmjB4jxixhmTGgmdG6aJQUKQjIalWF1bv0riaLS91CYD22B7le3z1UE8zMMSbO6UJ3bIrPfV79ZTbzsX6bsRjEKZNI0BuGpGeZ2MgpkUWtJegIi9S9JzqMFZFl/DznMcXW0ekMHkJByNICg93SRUzyrpug8KUANmm40L6dpATczD/po+ulQV8wHiPKAEiFazJLDKS8Mr8YxPwYo0hcLqomt5Hg9WHH2GYcHGSnz04RnQT+RIcITZ7hdvdE4xbjnJPqOzKF3KI8Ii4JZ4vcrQQz1KB8/GzdJXOmHSPD1J0I0jJcYugAw74a4b1lpIadTWjdc='
@@ -26,3 +25,4 @@ deploy:
     on:
       branch: master
       repo: drexelieee/dragonhacks-backend
+      node: stable
