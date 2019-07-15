@@ -1,5 +1,5 @@
-// import * as functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   response.send("Hello from Firebase!");
-// });
+export const helloWorld = functions.https.onRequest((request, response) => {
+  response.send("Hello from Firebase!");
+});
