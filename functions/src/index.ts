@@ -16,18 +16,18 @@ const transporter = nodemailer.createTransport({
  * @returns {boolean} indicates success
  */
 export const submitSponserForm = functions.https.onCall(async (data: ISponserForm, context) => {
-  let text = `I am interested in the ${data.package} package.`;
+  let text = `Package: ${data.package}.`;
 
   if (data.donation > 0) {
-    text += `\nAdditionally, I would like to donate $${data.donation}.`;
+    text += `\nAdditional Donation: $${data.donation}.`;
   }
 
-  text += `\n\n${data.message}
+  if (data.message !== "") {
+    text += `\nMessage: ${data.message}`
+  }
 
-You can contact me at ${data.contactEmail}
-
-From,
-    ${data.contactName}`;
+  text += `\nContact Name: ${data.contactName}
+Contact Email: ${data.contactEmail}`;
 
   const mailOptions: MailOptions = {
     from: "teamdragonhacks@gmail.com",
