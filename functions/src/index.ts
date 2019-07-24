@@ -15,10 +15,10 @@ const transporter = nodemailer.createTransport({
  * Generates an email for a sponsorship request.
  * @returns {boolean} indicates success
  */
-export const submitSponserForm = functions.https.onRequest(async (request, response) => {
+export const submitSponserForm = functions.https.onCall(async (request, context) => {
   // ignore non posts
   if (request.method !== "POST") {
-    response.send(false);
+    return false;
   }
 
   let text = `I am interested in the ${request.body.package} package.`;
@@ -43,8 +43,8 @@ From,
 
   try {
     await transporter.sendMail(mailOptions);
-    response.send(true);
+    return true;
   } catch (e) {
-    response.send(e);
+    return false;
   }
 });
