@@ -2,13 +2,12 @@ import * as functions from 'firebase-functions';
 import * as nodemailer from "nodemailer";
 import * as admin from "firebase-admin";
 import { MailOptions } from 'nodemailer/lib/json-transport';
-import { emailAuth } from './.secret/emailAuth';
 
 admin.initializeApp();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
-  auth: emailAuth
+  auth: functions.config().nodemailer.auth
 });
 
 /**
