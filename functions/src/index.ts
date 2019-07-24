@@ -15,19 +15,19 @@ const transporter = nodemailer.createTransport({
  * Generates an email for a sponsorship request.
  * @returns {boolean} indicates success
  */
-export const submitSponserForm = functions.https.onCall(async (data: ISponserForm, context) => {
+export const submitSponsorForm = functions.https.onCall(async (data: ISponsorForm, context) => {
   let text = `Package: ${data.package}.`;
 
   if (data.donation > 0) {
     text += `\nAdditional Donation: $${data.donation}.`;
   }
 
-  if (data.message !== "") {
-    text += `\nMessage: ${data.message}`
-  }
+  text += `\nContact Name: ${data.contactName}`;
+  text += `\nContact Email: ${data.contactEmail}`;
 
-  text += `\nContact Name: ${data.contactName}
-Contact Email: ${data.contactEmail}`;
+  if (data.message !== "") {
+    text += `\nMessage:\n${data.message}`
+  }
 
   const mailOptions: MailOptions = {
     from: "teamdragonhacks@gmail.com",
@@ -44,7 +44,7 @@ Contact Email: ${data.contactEmail}`;
   }
 });
 
-interface ISponserForm {
+interface ISponsorForm {
   contactName: string,
   contactEmail: string,
   organization: string,
