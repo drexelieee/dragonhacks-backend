@@ -66,3 +66,6 @@ node_modules/
 
 # VSCode
 *.code-workspace
+
+# Secrets
+.secret/
