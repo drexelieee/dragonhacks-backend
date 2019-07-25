@@ -6,3 +6,6 @@
 typings/
 
 node_modules/
+
+# Runtime config for `npm run shell`
+.runtimeconfig.json
