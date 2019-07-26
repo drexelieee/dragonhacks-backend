@@ -28,9 +28,9 @@ export const submitSponsorForm = functions.https.onCall(async (data: ISponsorFor
 
   try {
     await transporter.sendMail(mailOptions);
-    return true;
+    return {success: true };
   } catch (e) {
-    return false;
+    return {success: false };
   }
 });
 
