@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
  * Generates an email for a sponsorship request.
  * @returns {boolean} indicates success
  */
-export const submitSponsorForm = functions.https.onCall(async (data: ISponsorForm, context) => {
+export const submitSponsorForm = functions.https.onCall((data: ISponsorForm, context) => {
   let text  = data.contactName && `Contact Name: ${data.contactName}\n` || '';
       text += data.contactEmail && `Contact Email: ${data.contactEmail}\n` || '';
       text += data.organization && `Organization: ${data.organization}\n` || '';
@@ -26,12 +26,12 @@ export const submitSponsorForm = functions.https.onCall(async (data: ISponsorFor
     text: text
   };
 
-  try {
-    await transporter.sendMail(mailOptions);
+  return transporter.sendMail(mailOptions).then(() => {
     return true;
-  } catch (e) {
+  }).catch((err) => {
+    console.log(err);
     return false;
-  }
+  });
 });
 
 interface ISponsorForm {
